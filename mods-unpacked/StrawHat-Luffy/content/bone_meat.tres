@@ -1,0 +1,31 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/global/effect.gd" type="Script" id=2]
+[ext_resource path="res://mods-unpacked/StrawHat-Luffy/art/strawhat_meat_icon.png" type="Texture" id=3]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+key = "stat_max_hp"
+value = 6
+effect_sign = 3
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 2 )
+key = "consumable_heal"
+text_key = "effect_consumable_heal"
+value = 2
+effect_sign = 3
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_strawhat_luffy_bone_meat"
+unlocked_by_default = true
+icon = ExtResource( 3 )
+name = "STRAWHAT_ITEM_BONE_MEAT"
+tier = 0
+value = 24
+effects = [ SubResource( 1 ), SubResource( 2 ) ]
+max_nb = 1
+item_appearances = [  ]
+tags = [ "stat_max_hp", "consumable" ]

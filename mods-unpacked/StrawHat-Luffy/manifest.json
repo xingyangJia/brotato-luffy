@@ -1,0 +1,18 @@
+{
+  "name": "Luffy",
+  "namespace": "StrawHat",
+  "version_number": "1.0.0",
+  "description": "Straw Hat Luffy joins Brotato with an elastic punch and two exclusive items.",
+  "website_url": "",
+  "dependencies": [],
+  "extra": {
+    "godot": {
+      "authors": ["StrawHat"],
+      "compatible_mod_loader_version": ["6.3.0"],
+      "compatible_game_version": ["1.2.0.3"],
+      "incompatibilities": [],
+      "load_before": [],
+      "config_defaults": {}
+    }
+  }
+}

@@ -1,0 +1,50 @@
+[gd_resource type="Resource" load_steps=10 format=2]
+
+[ext_resource path="res://items/characters/character_data.gd" type="Script" id=1]
+[ext_resource path="res://items/global/effect.gd" type="Script" id=2]
+[ext_resource path="res://mods-unpacked/StrawHat-Luffy/art/strawhat_luffy_icon.png" type="Texture" id=3]
+[ext_resource path="res://items/global/item_appearance_data.gd" type="Script" id=4]
+[ext_resource path="res://mods-unpacked/StrawHat-Luffy/art/strawhat_body.png" type="Texture" id=5]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+key = "stat_range"
+value = 20
+effect_sign = 3
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 2 )
+key = "stat_speed"
+value = 8
+effect_sign = 3
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 2 )
+key = "stat_ranged_damage"
+value = -5
+effect_sign = 3
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 4 )
+sprite = ExtResource( 5 )
+position = 14
+display_priority = 4
+depth = 1.0
+is_character_appearance = true
+
+[resource]
+script = ExtResource( 1 )
+my_id = "character_strawhat_luffy"
+unlocked_by_default = true
+icon = ExtResource( 3 )
+name = "STRAWHAT_CHARACTER_LUFFY"
+effects = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ]
+item_appearances = [ SubResource( 4 ) ]
+tags = [  ]
+wanted_tags = [  ]
+banned_item_groups = [  ]
+banned_items = [  ]
+banned_upgrades = [  ]
+banned_meca_stats = [  ]
+starting_weapons = [  ]
+starting_items = [  ]
