@@ -1,6 +1,6 @@
 # 草帽路飞 · 《土豆兄弟》Mod
 
-戴上草帽，边跑边用会伸长的橡胶拳打怪。首版面向 Steam Windows 版《土豆兄弟》1.2.0.3 的单人模式，使用游戏内置的 ModLoader 6.3.0，基础游戏即可游玩。
+戴上草帽，边跑边用橡胶手枪打怪。Mod 面向 Steam Windows 版《土豆兄弟》1.2.0.3 的单人模式，使用游戏内置的 ModLoader 6.3.0，基础游戏即可游玩。
 
 [查看实战截图](workshop/gameplay.png)
 
@@ -8,14 +8,14 @@
 
 ## 本地试玩
 
-1. 在 Steam 库中右键《土豆兄弟》，选择「管理 → 浏览本地文件」。
-2. 在和 Brotato.exe 同一级的目录中创建 mods 文件夹，把 [StrawHat-Luffy-1.0.0.zip](dist/StrawHat-Luffy-1.0.0.zip) 原样放进去。
+1. 下载 [StrawHat-Luffy-1.0.1.zip](dist/StrawHat-Luffy-1.0.1.zip)。更新时用它替换旧版 ZIP。
+2. 在启用了本地 ZIP 的测试环境中，把 ZIP 原样放进与 Brotato.exe 同级的 `mods` 文件夹，或放进 `--mods-path` 指定的目录。通过 Steam 创意工坊试玩时，按下方流程上传并订阅条目。 [ModLoader 启动参数](https://wiki.godotmodding.com/guides/integration/cli_args/)
 3. 启动游戏，在主菜单的 Mods 中确认 StrawHat-Luffy 已启用，开始单人新局。草帽路飞默认解锁，初始武器是 I 阶橡胶手枪。
 
 ## 玩法
 
 - **草帽路飞**有 +20 范围、+8% 移速、−5 远程伤害。原版武器也可在局内购买。
-- **橡胶手枪**是自动瞄准的近战直拳，吃 100% 近战伤害加成，命中带击退。两把同阶拳头可以合成下一阶。
+- **橡胶手枪**是自动瞄准的长距离近战直拳，沿用原版拳头的出拳和收拳动作。吃 100% 近战伤害加成，命中带击退。两把同阶拳头可以合成下一阶。
 - **草帽**是 II 阶道具，提供 +8% 闪避。
 - **带骨肉**是 I 阶道具，提供 +6 最大生命值，捡到食物时额外回复 2 点生命。
 
@@ -28,18 +28,18 @@
 
 ## 提交 Steam 创意工坊
 
-1. 本地试玩后，准备 [Mod ZIP](dist/StrawHat-Luffy-1.0.0.zip) 和 [512 × 512 工坊封面](workshop/cover.png)。
+1. 本地试玩后，准备 [Mod ZIP](dist/StrawHat-Luffy-1.0.1.zip) 和 [512 × 512 工坊封面](workshop/cover.png)。
 2. 在 Steam 的游戏属性中打开「测试版」，选择 modding 分支。从 Steam 启动游戏时选择工坊上传器。
 3. 在上传器选择 ZIP 和封面。首发时留空 Workshop ID。更新时填工坊页面网址里的条目 ID。
 4. 上传后从 Steam 的创意工坊进入条目页面，填写下方标题和简介。Steam 默认隐藏新条目，可在页面上调整可见性。上传前按 Steam 协议确认所用内容的权利。 [工坊上传指南](https://steamcommunity.com/sharedfiles/filedetails/?id=2931079751) · [Steam 订户协议](https://store.steampowered.com/subscriber_agreement/)
 
 **建议标题**
 
-草帽路飞 · 伸缩拳 | Straw Hat Luffy
+草帽路飞 · 橡胶手枪 | Straw Hat Luffy
 
 **可复制的简介**
 
-> Q 版草帽路飞来到了《土豆兄弟》！开局用橡胶手枪，拉开距离打出一记伸缩直拳。把拳头合到 IV 阶，再用草帽的闪避和带骨肉的回血撑过怪潮。
+> Q 版草帽路飞来到了《土豆兄弟》！开局用橡胶手枪，拉开距离打出一记直拳。把拳头合到 IV 阶，再用草帽的闪避和带骨肉的回血撑过怪潮。
 >
 > 包含 1 个角色、1 把四阶专属武器和 2 件专属道具。支持简体中文和英文。适配 Steam Windows 版 1.2.0.3 单人模式，基础游戏即可游玩。
 
@@ -59,7 +59,7 @@ python build.py --godot "C:\path\to\Godot_v3.7-dev1_win64.exe"
 
 ### 现在改哪里
 
-| 要改的内容 | 1.0.0 的位置 |
+| 要改的内容 | 源码位置 |
 | --- | --- |
 | 路飞属性、角色图标和局内外观 | [content/luffy.tres](mods-unpacked/StrawHat-Luffy/content/luffy.tres) |
 | 橡胶手枪每阶的伤害和范围 | [content/luffy_content.gd](mods-unpacked/StrawHat-Luffy/content/luffy_content.gd) 中的 `DAMAGE` 和 `REACH` |
@@ -84,7 +84,7 @@ art/                        游戏内使用的透明 PNG
 
 - **内容登记**放在 `content/catalog.gd`。角色条目关联可选的起始武器，装备条目关联资源和 `owners`。通用装备显式登记 `owners = []`，专属装备列出对应的角色内部 ID。四阶武器共用一个家族 ID 和一份归属，单阶资源有各自的 ID。
 - **游戏接入**由 `extensions/item_service.gd` 负责。沿用当前在读取存档和默认解锁前注册内容的时机，注册一次后刷新原版缓存。商店重抽和原版兜底都按角色限制专属装备。路飞的专属武器宝箱概率继续用 15%，命中后从同阶且能装备或合成的专属武器中等概率选一把。没有候选时，发放原版抽到的奖励。 [Godot 3 脚本扩展](https://wiki.godotmodding.com/guides/modding/script_extensions/)
-- **玩法和美术**随所属内容存放。普通加属性道具直接复用原版效果。武器的动作放进自己的场景，伸缩手臂负责显示，命中和收拳判定由原版战斗逻辑负责。新机制若有触发次数或持续时间，按玩家分别记录，在离开对局时清理。
+- **玩法和美术**随所属内容存放。普通加属性道具直接复用原版效果。橡胶手枪的武器场景沿用原版拳头的动作和命中判定，使用自己的拳头贴图。新机制若有触发次数或持续时间，按玩家分别记录，在离开对局时清理。
 
 ### 逐步扩充
 
