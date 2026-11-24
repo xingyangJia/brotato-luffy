@@ -1,6 +1,5 @@
 extends Reference
 
-const CHARACTER_ID = "character_strawhat_luffy"
 const WEAPON_ID = "weapon_strawhat_rubber_pistol"
 const RUBBER_PISTOL_SCENE = preload("res://mods-unpacked/StrawHat-Luffy/content/rubber_pistol.tscn")
 const RUBBER_PISTOL_ICON = preload("res://mods-unpacked/StrawHat-Luffy/art/strawhat_fist_icon.png")
@@ -13,10 +12,6 @@ const FIST_TIERS = [
 ]
 const DAMAGE = [8, 15, 28, 52]
 const REACH = [175, 185, 195, 205]
-
-
-static func is_luffy(character: CharacterData) -> bool:
-	return character != null and character.my_id == CHARACTER_ID
 
 
 static func create_weapons() -> Array:

@@ -1,8 +1,8 @@
 {
   "name": "Luffy",
   "namespace": "StrawHat",
-  "version_number": "1.0.1",
-  "description": "Straw Hat Luffy joins Brotato with the long-reaching Gum-Gum Pistol and two exclusive items.",
+  "version_number": "1.1.0",
+  "description": "Straw Hat Luffy unlocks Gears as the waves progress. Change forms between waves and awaken Gear Five in combat.",
   "website_url": "",
   "dependencies": [],
   "extra": {

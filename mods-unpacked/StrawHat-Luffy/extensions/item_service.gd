@@ -1,6 +1,7 @@
 extends "res://singletons/item_service.gd"
 
 const LUFFY_CONTENT = preload("res://mods-unpacked/StrawHat-Luffy/content/luffy_content.gd")
+const GEARS = preload("res://mods-unpacked/StrawHat-Luffy/content/gears.gd")
 const LUFFY_CHARACTER = preload("res://mods-unpacked/StrawHat-Luffy/content/luffy.tres")
 const LUFFY_ITEMS = [
 	preload("res://mods-unpacked/StrawHat-Luffy/content/straw_hat.tres"),
@@ -46,7 +47,7 @@ func init_unlocked_pool() -> void:
 
 func update_pools(pool: Array, backup_pool: Array, player_index: int, item_tier: int, type: int) -> void:
 	.update_pools(pool, backup_pool, player_index, item_tier, type)
-	if not _is_luffy_player(player_index):
+	if not GEARS.is_luffy_player(player_index):
 		return
 	for item in _luffy_unlocked_loot:
 		var entry_type: int = TierData.WEAPONS if item is WeaponData else TierData.ITEMS
@@ -57,13 +58,8 @@ func update_pools(pool: Array, backup_pool: Array, player_index: int, item_tier:
 
 func process_item_box(consumable_data: ConsumableData, wave: int, player_index: int) -> ItemParentData:
 	var loot: ItemParentData = .process_item_box(consumable_data, wave, player_index)
-	if loot is ItemData and _is_luffy_player(player_index) and Utils.get_chance_success(LUFFY_CRATE_WEAPON_CHANCE):
+	if loot is ItemData and GEARS.is_luffy_player(player_index) and Utils.get_chance_success(LUFFY_CRATE_WEAPON_CHANCE):
 		for gear in _luffy_unlocked_loot:
 			if gear is WeaponData and gear.tier == loot.tier and RunData.can_take_weapon(gear, player_index):
 				return apply_item_effect_modifications(gear, player_index)
 	return loot
-
-
-func _is_luffy_player(player_index: int) -> bool:
-	return (player_index >= 0 and player_index < RunData.get_player_count()
-		and LUFFY_CONTENT.is_luffy(RunData.get_player_character(player_index)))

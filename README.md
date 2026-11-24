@@ -1,6 +1,6 @@
 # 草帽路飞 · 《土豆兄弟》Mod
 
-戴上草帽，边跑边用橡胶手枪打怪。Mod 面向 Steam Windows 版《土豆兄弟》1.2.0.3 的单人模式，使用游戏内置的 ModLoader 6.3.0，基础游戏即可游玩。
+戴上草帽，用橡胶手枪打怪，随波次解锁二档到五档。Mod 面向 Steam Windows 版《土豆兄弟》1.2.0.3 的单人模式，使用游戏内置的 ModLoader 6.3.0，基础游戏即可游玩。
 
 [查看实战截图](workshop/gameplay.png)
 
@@ -8,7 +8,7 @@
 
 ## 本地试玩
 
-1. 下载 [StrawHat-Luffy-1.0.1.zip](dist/StrawHat-Luffy-1.0.1.zip)。更新时用它替换旧版 ZIP。
+1. 下载 [StrawHat-Luffy-1.1.0.zip](dist/StrawHat-Luffy-1.1.0.zip)。更新时用它替换旧版 ZIP。
 2. 在启用了本地 ZIP 的测试环境中，把 ZIP 原样放进与 Brotato.exe 同级的 `mods` 文件夹，或放进 `--mods-path` 指定的目录。通过 Steam 创意工坊试玩时，按下方流程上传并订阅条目。 [ModLoader 启动参数](https://wiki.godotmodding.com/guides/integration/cli_args/)
 3. 启动游戏，在主菜单的 Mods 中确认 StrawHat-Luffy 已启用，开始单人新局。草帽路飞默认解锁，初始武器是 I 阶橡胶手枪。
 
@@ -26,9 +26,23 @@
 | 基础伤害 | 8 | 15 | 28 | 52 |
 | 基础范围 | 175 | 185 | 195 | 205 |
 
+### 局内档位
+
+点击商店顶部的「下一波」按钮，选择橡胶手枪在下一波使用的档位。第一次用四档形态出发时，本局的四档分支就会确定。每波仍可切换常态、二档、三档或已选的四档形态，选项随本局存档保存。
+
+| 档位 | 解锁时机 | 效果 |
+| --- | --- | --- |
+| 常态 | 开局 | 长距离直拳，命中击退。 |
+| 二档 | 打完第 3 波 | 出拳和收拳加快，射程缩短。 |
+| 三档 | 打完第 6 波 | 巨人拳出手较慢，命中时伤及目标周围。 |
+| 四档 | 打完第 10 波 | 弹跳人有更强的击退，波及正后方的一名敌人。蛇人的拳会转向附近的第二个目标。 |
+| 五档 | 打完第 15 波 | 每波用橡胶手枪命中积累 10 格能量，自动觉醒至多 6 秒。拳头落点会弹开周围敌人，结束后回到本波选用的档位。 |
+
+五档每波可触发一次，快速连续命中每 0.35 秒至多增加一格能量。进入战斗后，可在右上角查看当前档位和五档充能。
+
 ## 提交 Steam 创意工坊
 
-1. 本地试玩后，准备 [Mod ZIP](dist/StrawHat-Luffy-1.0.1.zip) 和 [512 × 512 工坊封面](workshop/cover.png)。
+1. 本地试玩后，准备 [Mod ZIP](dist/StrawHat-Luffy-1.1.0.zip) 和 [512 × 512 工坊封面](workshop/cover.png)。
 2. 在 Steam 的游戏属性中打开「测试版」，选择 modding 分支。从 Steam 启动游戏时选择工坊上传器。
 3. 在上传器选择 ZIP 和封面。首发时留空 Workshop ID。更新时填工坊页面网址里的条目 ID。
 4. 上传后从 Steam 的创意工坊进入条目页面，填写下方标题和简介。Steam 默认隐藏新条目，可在页面上调整可见性。上传前按 Steam 协议确认所用内容的权利。 [工坊上传指南](https://steamcommunity.com/sharedfiles/filedetails/?id=2931079751) · [Steam 订户协议](https://store.steampowered.com/subscriber_agreement/)
@@ -39,7 +53,7 @@
 
 **可复制的简介**
 
-> Q 版草帽路飞来到了《土豆兄弟》！开局用橡胶手枪，拉开距离打出一记直拳。把拳头合到 IV 阶，再用草帽的闪避和带骨肉的回血撑过怪潮。
+> Q 版草帽路飞来到了《土豆兄弟》！用橡胶手枪打怪，随波次解锁快拳、巨人拳和四档分支。到后期靠命中蓄满能量，短时间进入五档，把围过来的怪群弹开。
 >
 > 包含 1 个角色、1 把四阶专属武器和 2 件专属道具。支持简体中文和英文。适配 Steam Windows 版 1.2.0.3 单人模式，基础游戏即可游玩。
 
@@ -63,6 +77,8 @@ python build.py --godot "C:\path\to\Godot_v3.7-dev1_win64.exe"
 | --- | --- |
 | 路飞属性、角色图标和局内外观 | [content/luffy.tres](mods-unpacked/StrawHat-Luffy/content/luffy.tres) |
 | 橡胶手枪每阶的伤害和范围 | [content/luffy_content.gd](mods-unpacked/StrawHat-Luffy/content/luffy_content.gd) 中的 `DAMAGE` 和 `REACH` |
+| 档位解锁和五档充能 | [content/gears.gd](mods-unpacked/StrawHat-Luffy/content/gears.gd) |
+| 各档位的拳头动作、范围和追加伤害 | [content/rubber_pistol.gd](mods-unpacked/StrawHat-Luffy/content/rubber_pistol.gd) |
 | 道具属性、价格、阶级和持有上限 | [草帽](mods-unpacked/StrawHat-Luffy/content/straw_hat.tres) · [带骨肉](mods-unpacked/StrawHat-Luffy/content/bone_meat.tres) |
 | 专属装备的商店和宝箱规则 | [extensions/item_service.gd](mods-unpacked/StrawHat-Luffy/extensions/item_service.gd) |
 | 游戏里的简中和英文名称 | [mod_main.gd](mods-unpacked/StrawHat-Luffy/mod_main.gd) 中的 `NAMES` |
